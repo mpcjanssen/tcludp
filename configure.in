@@ -96,6 +96,14 @@ TEA_PREFIX
 TEA_SETUP_COMPILER
 
 #--------------------------------------------------------------------
+#
+# Any additional tests....
+#
+#--------------------------------------------------------------------
+
+TEA_IPV6_SUPPORT
+
+#--------------------------------------------------------------------
 # __CHANGE__
 # Choose which headers you need.  Extension authors should try very
 # hard to only rely on the Tcl public header files.  Internal headers
