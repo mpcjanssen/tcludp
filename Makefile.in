@@ -233,7 +233,7 @@ install-doc: doc
 	done
 
 test: binaries libraries
-	$(TCLSH) `@CYGPATH@ $(srcdir)/tests/all.tcl` $(TESTFLAGS)
+	echo load $($(PACKAGE)_LIB_FILE) \; cd $(srcdir)/tests \; source all.tcl | $(TCLSH) $(TESTFLAGS)
 
 shell: binaries libraries
 	@$(TCLSH) $(SCRIPT)
