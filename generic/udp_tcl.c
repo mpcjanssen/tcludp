@@ -590,6 +590,7 @@ UDP_CheckProc(ClientData data, int flags)
             
             if (actual_size < 0) {
                 UDPTRACE("UDP error - recvfrom %d\n", statePtr->sock);
+                ckfree(message);
             } else {
                 p = (PacketList *)calloc(1, sizeof(struct PacketList));
                 p->message = message;
