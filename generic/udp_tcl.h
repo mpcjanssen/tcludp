@@ -23,7 +23,11 @@
 #endif
 
 #if defined(_WIN32) && !defined(WIN32)
-#define WIN32
+#  define WIN32
+#  if WINVER > 0x0500
+#    define SIPC_IPV6 1
+#    define HAVE_GETADDRINFO 1
+#  endif
 #endif
 
 #ifdef WIN32
