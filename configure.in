@@ -25,6 +25,8 @@ AC_CONFIG_AUX_DIR(tclconfig)
 CONFIGDIR=${srcdir}/tclconfig
 AC_SUBST(CONFIGDIR)
 
+dnl# AC_CONFIG_HEADER(config.h)
+
 #----------------------------------------------------------------------
 # __CHANGE__
 # Set your package name and version numbers here.  The NODOT_VERSION is
