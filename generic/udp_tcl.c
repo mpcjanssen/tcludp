@@ -1238,12 +1238,12 @@ udpTrace(const char *format, ...)
 
 /*
  * ----------------------------------------------------------------------
- * udpGetSetvice --
+ * udpGetService --
  *
- *  Return the service port number in network byte order from either a string
- *  representation of the port number or the service name. If the service
- *  string cannot be converted (ie: a name not present in the services 
- *  database) then set a Tcl error.
+ *  Return the service port number in network byte order from either a
+ *  string representation of the port number or the service name. If the
+ *  service string cannot be converted (ie: a name not present in the
+ *  services database) then set a Tcl error.
  * ----------------------------------------------------------------------
  */
 static int
