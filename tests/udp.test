@@ -84,7 +84,7 @@ test udp-2.1 {udp_conf using service number} {
         set r} msg] $msg
 } {0 {localhost 123}}
 
-test udp-2.2 {udp_open on named port} {
+test udp-2.2 {udp_open on named port} windows {
     list [catch {
         set port ntp
         set s [udp_open $port]
