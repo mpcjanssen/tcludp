@@ -27,7 +27,7 @@
 # unix subdirectory.
 #========================================================================
 
-udp_SOURCES	= generic/udp_tcl.c
+udp_SOURCES	= $(srcdir)/generic/udp_tcl.c
 
 WIN_SOURCES	=
 UNIX_SOURCES	= 
