@@ -1090,7 +1090,7 @@ udpGetOption(ClientData instanceData, Tcl_Interp *interp,
              CONST84 char *optionName, Tcl_DString *optionValue)
 {
     UdpState *statePtr = (UdpState *)instanceData;
-    const char * options = "myport remote peer mcastadd mcastdrop";
+    CONST84 char * options = "myport remote peer mcastadd mcastdrop";
     int r = TCL_OK;
 
     if (optionName == NULL) {
@@ -1158,10 +1158,10 @@ udpGetOption(ClientData instanceData, Tcl_Interp *interp,
  */
 static int
 udpSetOption(ClientData instanceData, Tcl_Interp *interp,
-             CONST char *optionName, CONST char *newValue)
+             CONST84 char *optionName, CONST84 char *newValue)
 {
     UdpState *statePtr = (UdpState *)instanceData;
-    const char * options = "remote mcastadd mcastdrop";
+    CONST84 char * options = "remote mcastadd mcastdrop";
     int r = TCL_OK;
 
     if (!strcmp("-remote", optionName)) {
