@@ -142,6 +142,8 @@ Udp_Init(Tcl_Interp *interp)
     if (Udp_WinHasSockets(interp) != TCL_OK) {
         return TCL_ERROR;
     }
+
+    Tcl_CreateEventSource(UDP_SetupProc, UDP_CheckProc, NULL);
 #endif
 
     Tcl_CreateCommand(interp, "udp_open", udpOpen , 
@@ -151,8 +153,6 @@ Udp_Init(Tcl_Interp *interp)
     Tcl_CreateCommand(interp, "udp_peek", udpPeek , 
                       (ClientData) NULL, (Tcl_CmdDeleteProc *) NULL);
     
-    Tcl_CreateEventSource(UDP_SetupProc, UDP_CheckProc, NULL);
-
     r = Tcl_PkgProvide(interp, TCLUDP_PACKAGE_NAME, TCLUDP_PACKAGE_VERSION);
     return r;
 }
