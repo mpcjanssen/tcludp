@@ -417,12 +417,12 @@ udpPeek(ClientData clientData, Tcl_Interp *interp,
 {
 #ifndef WIN32
     int buffer_size = 16;
-    int actual_size, socksize, port;
+    int actual_size, socksize;
     int sock;
     char message[17];
-    char *remotehost;
-    struct hostent *name;
+    /*struct hostent *name;*/
 #ifdef SIPC_IPV6
+    char *remotehost;
     struct sockaddr_in6 recvaddr;
 #else
     struct sockaddr_in recvaddr;
