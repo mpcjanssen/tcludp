@@ -19,6 +19,7 @@ if {[lsearch [namespace children] ::tcltest] == -1} {
 package require udp
 
 # -------------------------------------------------------------------------
+# Original tcludp < 1.0.4 user interface
 
 test udp-1.0 {udp_open with any port} {
     global _udp

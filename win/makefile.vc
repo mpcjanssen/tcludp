@@ -156,7 +156,7 @@ Please `cd` to its location first.
 PROJECT = udp
 !include "rules.vc"
 
-DOTVERSION      = 1.0.6
+DOTVERSION      = 2.0.0
 VERSION         = $(DOTVERSION:.=)
 STUBPREFIX      = $(PROJECT)stub
 
@@ -278,7 +278,7 @@ lflags	= $(lflags) -ws:aggressive
 dlllflags = $(lflags) -dll
 conlflags = $(lflags) -subsystem:console
 guilflags = $(lflags) -subsystem:windows
-baselibs   = $(TCLSTUBLIB) wsock32.lib
+baselibs   = $(TCLSTUBLIB) ws2_32.lib #wsock32.lib
 
 #---------------------------------------------------------------------
 # TclTest flags
