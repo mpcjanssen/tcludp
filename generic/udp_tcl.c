@@ -39,7 +39,9 @@
 /* define some Win32isms for Unix */
 #ifndef WIN32
 #define SOCKET int
+#define INVALID_SOCKET -1
 #define closesocket close
+#define ioctlsocket ioctl
 #endif
 
 #ifdef DEBUG
@@ -236,11 +238,9 @@ udpOpen(ClientData clientData, Tcl_Interp *interp,
         Tcl_AppendResult(interp, errBuf, (char *)NULL);
         return TCL_ERROR;
     }
-#ifdef WIN32
+
     ioctlsocket(sock, FIONBIO, &status);
-#else
-    ioctl(sock, (int) FIONBIO, &status);
-#endif
+
     if (localport == 0) {
         len = sizeof(sockaddr);
         getsockname(sock, (struct sockaddr *)&sockaddr, &len);
