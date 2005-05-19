@@ -15,9 +15,6 @@
 
 #include "udp_tcl.h"
 
-#define TCLUDP_PACKAGE_NAME    "udp"
-#define TCLUDP_PACKAGE_VERSION VERSION
-
 #ifdef WIN32
 #include <stdlib.h>
 #include <malloc.h>
@@ -154,7 +151,7 @@ Udp_Init(Tcl_Interp *interp)
     Tcl_CreateCommand(interp, "udp_peek", udpPeek , 
                       (ClientData) NULL, (Tcl_CmdDeleteProc *) NULL);
     
-    r = Tcl_PkgProvide(interp, TCLUDP_PACKAGE_NAME, TCLUDP_PACKAGE_VERSION);
+    r = Tcl_PkgProvide(interp, PACKAGE_NAME, PACKAGE_VERSION);
     return r;
 }
 

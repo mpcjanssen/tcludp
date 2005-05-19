@@ -16,14 +16,8 @@
 #
 # $Id$
 
-If the channel is closed, the program will exit.
-
-BTW, when it will not exit it does *not* consume CPU
-resources.
-
-
-
-load [file join [file dirname [info script]] .. win Release udp106.dll]
+#load [file join [file dirname [info script]] .. win Release udp107.dll]
+#load [file join [file dirname [info script]] .. i386-unknown-openbsd3.6 libudp107.so]
 package require udp
 
 variable forever 0
