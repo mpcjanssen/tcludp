@@ -20,10 +20,10 @@
 #include <malloc.h>
 typedef int socklen_t;
 #else /* ! WIN32 */
-#if defined(HAVE_SYS_IOCTL_H)
-#include <sys/ioctl.h>
-#elif defined(HAVE_SYS_FILIO_H)
+#if defined(HAVE_SYS_FILIO_H)
 #include <sys/filio.h>
+#elif defined(HAVE_SYS_IOCTL_H)
+#include <sys/ioctl.h>
 #else
 #error "Neither sys/ioctl.h nor sys/filio.h found. We need ioctl()"
 #endif
