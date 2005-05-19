@@ -245,7 +245,9 @@ crt = -MT
 INCLUDES	= $(TCL_INCLUDES) -I"$(WINDIR)" -I"$(GENERICDIR)"
 BASE_CLFAGS	= $(cflags) $(cdebug) $(crt) $(INCLUDES)
 CON_CFLAGS	= $(cflags) $(cdebug) $(crt) -DCONSOLE
-TCL_CFLAGS	= -DUSE_TCL_STUBS -DVERSION="\"$(DOTVERSION)\"" $(BASE_CLFAGS) $(OPTDEFINES)
+TCL_CFLAGS	= -DUSE_TCL_STUBS -DPACKAGE_NAME="\"$(PROJECT)\"" \
+		  -DPACKAGE_VERSION="\"$(DOTVERSION)\"" \
+		  $(BASE_CLFAGS) $(OPTDEFINES)
 
 #---------------------------------------------------------------------
 # Link flags
