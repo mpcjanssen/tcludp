@@ -176,7 +176,7 @@ all: binaries libraries doc
 # of the Makefile, in the "BINARIES" variable.
 #========================================================================
 
-binaries: $(BINARIES) pkgIndex.tcl
+binaries: $(BINARIES) pkgIndex.tcl-hand
 
 libraries:
 
@@ -188,7 +188,7 @@ libraries:
 #========================================================================
 
 DTPLITE=@DTPLITE@
-doc:
+doc: udp.n
 
 udp.n: $(srcdir)/doc/udp.man
 	test -x $(DTPLITE) && $(DTPLITE) -o $@ nroff $(srcdir)/doc/udp.man
