@@ -191,11 +191,14 @@ DTPLITE=@DTPLITE@
 doc: udp.n
 
 udp.n: $(srcdir)/doc/udp.man
-	test -x $(DTPLITE) && $(DTPLITE) -o $@ nroff $(srcdir)/doc/udp.man
+	@if [ -n "$(DTPLITE)" -a -x "$(DTPLITE)" ]; then \
+	    $(DTPLITE) -o $@ nroff $(srcdir)/doc/udp.man ; \
+	fi
 
 udp.html: $(srcdir)/doc/udp.man
-	test -x $(DTPLITE) && $(DTPLITE) -o $@ html $(srcdir)/doc/udp.man
-
+	@if [ -n "$(DTPLITE)" -a -x "$(DTPLITE)" ]; then \
+	    $(DTPLITE) -o $@ html $(srcdir)/doc/udp.man ; \
+	fi
 
 install: all install-binaries install-libraries install-doc
 
