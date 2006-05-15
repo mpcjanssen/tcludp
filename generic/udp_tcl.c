@@ -60,6 +60,10 @@ typedef int socklen_t;
 #define UDPTRACE 1 ? ((void)0) : udpTrace
 #endif
 
+#ifdef _MSC_VER
+#define snprintf _snprintf      /* trust Microsoft to complicate things */
+#endif
+
 FILE *dbg;
 
 #define MAXBUFFERSIZE 4096
