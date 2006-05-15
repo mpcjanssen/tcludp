@@ -168,6 +168,12 @@ AC_DEFINE(USE_TCL_STUBS)
 #AC_DEFINE(USE_TK_STUBS)
 
 #--------------------------------------------------------------------
+# Additional headers or symbols needed for the tcludp projects.
+#--------------------------------------------------------------------
+
+TCLUDP_CONFIG
+
+#--------------------------------------------------------------------
 # This macro generates a line to use when building a library.  It
 # depends on values set by the TEA_ENABLE_SHARED, TEA_ENABLE_SYMBOLS,
 # and TEA_LOAD_TCLCONFIG macros above.

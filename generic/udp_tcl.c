@@ -32,6 +32,10 @@ typedef int socklen_t;
 #endif
 #endif /* WIN32 */
 
+#if HAVE_FCNTL_H
+#  include <fcntl.h>
+#endif
+
 /* Tcl 8.4 CONST support */
 #ifndef CONST84
 #define CONST84
@@ -239,6 +243,20 @@ udpOpen(ClientData clientData, Tcl_Interp *interp,
         Tcl_AppendResult(interp, errBuf, (char *)NULL);
         return TCL_ERROR;
     } 
+
+    /*
+     * bug #1477669: avoid socket inheritence after exec
+     */
+#if HAVE_FLAG_FD_CLOEXEC
+    fcntl(sock, F_SETFD, FD_CLOEXEC);
+#else
+#ifdef WIN32
+    if (SetHandleInformation(sock, HANDLE_FLAG_INHERIT, 0) == 0) {
+      Tcl_AppendResult(interp, "failed to set close-on-exec bit", NULL);
+      return TCL_ERROR;
+    }
+#endif /* WIN32 */
+#endif /* HAVE_FLAG_FD_CLOEXEC */
 
     memset(&addr, 0, sizeof(addr));
 #ifdef SIPC_IPV6
