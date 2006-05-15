@@ -238,8 +238,9 @@ udpOpen(ClientData clientData, Tcl_Interp *interp,
     sock = socket(AF_INET, SOCK_DGRAM, 0);
 #endif
     if (sock < 0) {
-        sprintf(errBuf,"%s","udp - socket");
-        UDPTRACE("UDP error - socket\n");
+        snprintf(errBuf, 255, "failed to create socket");
+        errBuf[255] = 0;
+        UDPTRACE("%s\n", errBuf);
         Tcl_AppendResult(interp, errBuf, (char *)NULL);
         return TCL_ERROR;
     } 
@@ -247,6 +248,7 @@ udpOpen(ClientData clientData, Tcl_Interp *interp,
     /*
      * bug #1477669: avoid socket inheritence after exec
      */
+
 #if HAVE_FLAG_FD_CLOEXEC
     fcntl(sock, F_SETFD, FD_CLOEXEC);
 #else
@@ -268,8 +270,10 @@ udpOpen(ClientData clientData, Tcl_Interp *interp,
     addr.sin_port = localport;
 #endif
     if (bind(sock,(struct sockaddr *)&addr, sizeof(addr)) < 0) {
-        sprintf(errBuf,"%s","udp - bind");
-        UDPTRACE("UDP error - bind\n");
+        snprintf(errBuf, 255, "failed to bind socket to port %u",
+            ntohs(localport));
+        errBuf[255] = 0;
+        UDPTRACE("%s\n");
         Tcl_AppendResult(interp, errBuf, (char *)NULL);
         return TCL_ERROR;
     }
