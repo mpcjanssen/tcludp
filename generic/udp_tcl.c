@@ -46,6 +46,18 @@ typedef int socklen_t;
 #define IP_TTL 4
 #endif
 
+#ifdef _XOPEN_SOURCE_EXTENDED
+/*
+ * This won't get defined on HP-UX if _XOPEN_SOURCE_EXTENDED is defined,
+ * but we need it and TEA causes this macro to be defined.
+ */
+
+struct ip_mreq {
+    struct in_addr imr_multiaddr; /* IP multicast address of group */
+    struct in_addr imr_interface; /* local IP address of interface */
+};
+#endif /* _XOPEN_SOURCE_EXTENDED */
+
 /* define some Win32isms for Unix */
 #ifndef WIN32
 #define SOCKET int
