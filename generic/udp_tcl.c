@@ -46,7 +46,7 @@ typedef int socklen_t;
 #define IP_TTL 4
 #endif
 
-#ifdef _XOPEN_SOURCE_EXTENDED
+#if defined(_XOPEN_SOURCE_EXTENDED) && defined(__hpux)
 /*
  * This won't get defined on HP-UX if _XOPEN_SOURCE_EXTENDED is defined,
  * but we need it and TEA causes this macro to be defined.
