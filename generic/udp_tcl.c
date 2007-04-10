@@ -1487,7 +1487,7 @@ ErrorToObj(const char * prefix)
     LocalFree(sMsg);
 #elif defined(HAVE_STRERROR)
     extern int errno;
-    Tcl_Obj *errObj = Tcl_NewStringObj(prefix, -1);
+    errObj = Tcl_NewStringObj(prefix, -1);
     Tcl_AppendStringsToObj(errObj, ": ", strerror(errno), NULL);
 #endif
     return errObj;
