@@ -235,10 +235,10 @@ test: binaries libraries
 	$(TCLSH) `@CYGPATH@ $(srcdir)/tests/all.tcl` $(TESTFLAGS)
 
 shell: binaries libraries
-	echo "load $(PKG_LIB_FILE);set argv $(SCRIPT)" | $(TCLSH)
+	@$(TCLSH) $(SCRIPT)
 
 gdb:
-	$(TCLSH_ENV) gdb $(TCLSH_PROG) $(SCRIPT)
+	@$(TCLSH_ENV) gdb $(TCLSH_PROG) $(SCRIPT)
 
 depend:
 

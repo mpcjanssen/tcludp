@@ -156,7 +156,7 @@ Please `cd` to its location first.
 PROJECT = udp
 !include "rules.vc"
 
-DOTVERSION      = 1.0.8
+DOTVERSION      = 1.0.9
 VERSION         = $(DOTVERSION:.=)
 STUBPREFIX      = $(PROJECT)stub
 
