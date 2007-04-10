@@ -730,7 +730,7 @@ SocketThread(LPVOID arg)
         
         /* set each socket for select */
         for (statePtr = sockList; statePtr != NULL; statePtr=statePtr->next) {
-            FD_SET(statePtr->sock, &readfds);
+            FD_SET((unsigned int)statePtr->sock, &readfds);
             UDPTRACE("SET sock %d\n", statePtr->sock);
         }
         
@@ -1203,7 +1203,7 @@ UdpMulticast(ClientData instanceData, Tcl_Interp *interp,
     mreq.imr_interface.s_addr = INADDR_ANY;
     if (setsockopt(statePtr->sock, IPPROTO_IP, action,
                    (const char*)&mreq, sizeof(mreq)) < 0) {
-       Tcl_SetObjResult(interp, ErrorToObj("error changing multicast group"));
+        Tcl_SetObjResult(interp, ErrorToObj("error changing multicast group"));
         return TCL_ERROR;
     }
 
