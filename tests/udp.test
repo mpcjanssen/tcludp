@@ -94,6 +94,24 @@ test udp-2.2 {udp_open on named port} {pcOnly} {
     } msg] $msg
 } {0 0x007b}
 
+test udp-3.8 {multicastloop can be set to true} \
+    -body {
+	set s [udp_open]
+	fconfigure $s -mcastloop "true"
+	fconfigure $s -mcastloop
+    } -result {1} -cleanup {
+	close $s
+    }
+
+test udp-3.9 {multicastloop can be set to false} \
+    -body {
+	set s [udp_open]
+	fconfigure $s -mcastloop "true"
+	fconfigure $s -mcastloop "no"
+	fconfigure $s -mcastloop
+    } -result {0} -cleanup {
+	close $s
+    }
 
 # -------------------------------------------------------------------------
 # cleanup

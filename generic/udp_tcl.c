@@ -1430,7 +1430,7 @@ udpSetOption(ClientData instanceData, Tcl_Interp *interp,
     } else if (!strcmp("-mcastloop", optionName)) {
 
         int tmp = 1;
-        r = Tcl_GetInt(interp, newValue, &tmp);
+        r = Tcl_GetBoolean(interp, newValue, &tmp);
         if (r == TCL_OK) {
 	    unsigned char ctmp = (unsigned char)tmp;
             if (setsockopt(statePtr->sock, IPPROTO_IP, IP_MULTICAST_LOOP,
@@ -1475,6 +1475,7 @@ ErrorToObj(const char * prefix)
 #ifdef WIN32
     LPVOID sMsg;
     DWORD len = 0;
+
     len = FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER
                          | FORMAT_MESSAGE_FROM_SYSTEM
                          | FORMAT_MESSAGE_IGNORE_INSERTS,
