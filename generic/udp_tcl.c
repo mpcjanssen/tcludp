@@ -890,11 +890,14 @@ udpClose(ClientData instanceData, Tcl_Interp *interp)
      */
     if (statePtr->groupsObj) {
 	int n = 0;
-	Tcl_ListObjGetElements(interp, statePtr->groupsObj, &objc, &objv);
+	Tcl_Obj *dupGroupList = Tcl_DuplicateObj(statePtr->groupsObj);
+	Tcl_IncrRefCount(dupGroupList);
+	Tcl_ListObjGetElements(interp, dupGroupList, &objc, &objv);
 	for (n = 0; n < objc; n++) {
 	    UdpMulticast((ClientData)statePtr, interp, 
 		Tcl_GetString(objv[n]), IP_DROP_MEMBERSHIP);
 	}
+	Tcl_DecrRefCount(dupGroupList);
 	Tcl_DecrRefCount(statePtr->groupsObj);
     }
     
@@ -1194,7 +1197,9 @@ UdpMulticast(ClientData instanceData, Tcl_Interp *interp,
     if (mreq.imr_multiaddr.s_addr == -1) {
         name = gethostbyname(grp);
         if (name == NULL) {
-            Tcl_SetResult(interp, "invalid group name", TCL_STATIC);
+	    if (interp != NULL) {
+		Tcl_SetResult(interp, "invalid group name", TCL_STATIC);
+	    }
             return TCL_ERROR;
         }
         memcpy(&mreq.imr_multiaddr.s_addr, name->h_addr,
@@ -1203,7 +1208,9 @@ UdpMulticast(ClientData instanceData, Tcl_Interp *interp,
     mreq.imr_interface.s_addr = INADDR_ANY;
     if (setsockopt(statePtr->sock, IPPROTO_IP, action,
                    (const char*)&mreq, sizeof(mreq)) < 0) {
-        Tcl_SetObjResult(interp, ErrorToObj("error changing multicast group"));
+	    if (interp != NULL) {
+		Tcl_SetObjResult(interp, ErrorToObj("error changing multicast group"));
+	    }
         return TCL_ERROR;
     }
 
