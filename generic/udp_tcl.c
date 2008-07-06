@@ -482,6 +482,10 @@ udpPeek(ClientData clientData, Tcl_Interp *interp,
     Tcl_Channel chan;
     UdpState *statePtr;
     
+    if (argc < 2) {
+	Tcl_WrongNumArgs(interp, 0, NULL, "udp_peek sock ?buffersize?");
+        return TCL_ERROR;
+    }
     chan = Tcl_GetChannel(interp, (char *)argv[1], NULL);
     if (chan == (Tcl_Channel) NULL) {
         return TCL_ERROR;

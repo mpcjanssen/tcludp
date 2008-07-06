@@ -206,7 +206,29 @@ test udp-3.11 {-mcastloop is boolean - on/off} -setup {
     close $s
 } -result {1 0}
 
+test udp-4.0 {udp_peek} -constraints unix -setup {
+    set s [udp_open]
+} -body {
+    udp_peek $s
+} -cleanup {
+    close $s
+} -result {FIX ME on a unix box}
 
+test udp-4.1 {udp_peek} -constraints unix -setup {
+    set s [udp_open]
+} -body {
+    udp_peek $s
+} -cleanup {
+    close $s
+} -result {FIX ME on a unix box}
+
+test udp-4.2 "udp_peek: bug #1828920 - args" -constraints unix -setup {
+    set s [udp_open]
+} -body {
+    udp_peek
+} -cleanup {
+    close $s
+} -returnCodes error -match glob -result {wrong num args: *}
 
 test udp-10.1 "bug #1838467 - crash on exit" -setup {
     set s [udp_open]
