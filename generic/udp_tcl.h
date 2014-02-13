@@ -43,6 +43,7 @@
 #  include <netinet/in.h>
 #  include <arpa/inet.h>
 #  include <netdb.h>
+#  include <net/if.h>
 #endif /* WIN32 */
 
 #include <stdio.h>
@@ -93,6 +94,7 @@ typedef struct UdpState {
   struct UdpState   *next;
   Tcl_ThreadId      threadId;        /* for Tcl_ThreadAlert */
 #endif
+  short				ss_family;		 /* indicator set for ipv4 or ipv6 usage */
   int               multicast;       /* indicator set for multicast add */
   Tcl_Obj          *groupsObj;       /* list of the mcast groups */
 } UdpState;
