@@ -22,7 +22,7 @@ the tcl/unix/README file in the Tcl src dist. The following minimal
 example will install the extension in the /opt/tcl directory.
 
 The tcl development package is required for building. 
-(e.g. use 'apg-get|yum install tcl-devel.<platform>'
+(e.g. use 'apt-get|yum install tcl-devel.<platform>'
 
 	$ cd tcludp
 	$ ./configure --prefix=/opt/tcl
